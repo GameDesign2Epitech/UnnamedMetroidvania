@@ -14,7 +14,8 @@ func get_input():
 	velocity.x = 0
 	var right = Input.is_action_pressed('ui_right')
 	var left = Input.is_action_pressed('ui_left')
-	var jump = Input.is_action_just_pressed('ui_up')
+	var jump = Input.is_action_just_pressed('jump')
+	var jump_cut = Input.is_action_just_released('jump')
 	#Animation au sol
 	if is_on_floor():
 		$AnimatedSprite.animation = "idle"
@@ -28,6 +29,10 @@ func get_input():
 		double_jumping = true
 		velocity.y = jump_speed
 		$AnimatedSprite.animation = "jump"
+	#Fait un saut court si le bouton de saut n'est pas maintenu
+	if jump_cut and !is_on_floor():
+		if velocity.y < -200:
+			velocity.y = -200
 	#Calcul de la vélocité et changement de sprite en fonction de la direction
 	if right:
 		velocity.x += run_speed
