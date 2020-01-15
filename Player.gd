@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal scene_change
+
 export (int) var run_speed = 100
 export (int) var jump_speed = -400
 export (int) var gravity = 1200
@@ -8,6 +10,9 @@ export (bool) var can_double_jump = true
 var velocity = Vector2()
 var jumping = false
 var double_jumping = false
+
+var scene_pos_x = 1
+var scene_pos_y = 1
 
 func get_input():
 	#Stocker les inputs
@@ -55,3 +60,17 @@ func _physics_process(delta):
 		double_jumping = false
 	#Mouvement du personnage
 	velocity = move_and_slide(velocity, Vector2(0, -1))
+
+func _process(delta):
+	if position.x > 960 * scene_pos_x:
+		scene_pos_x += 1
+		#emit_signal("scene_change", 1, 0)
+	if position.x < 960 * (scene_pos_x - 1):
+		scene_pos_x -= 1
+		#emit_signal("scene_change", -1, 0)
+	if position.y > 544 * scene_pos_y:
+		scene_pos_y += 1
+		#emit_signal("scene_change", 0, 1)
+	if position.y < 544 * (scene_pos_y -1):
+		scene_pos_y -= 1
+		#emit_signal("scene_change", 0, -1)
