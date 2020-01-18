@@ -62,6 +62,7 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity, Vector2(0, -1))
 
 func _process(delta):
+	#Si on sort de l'écran, envoyer un signal à la caméra pour qu'elle bouge
 	if position.x > 960 * scene_pos_x:
 		scene_pos_x += 1
 		emit_signal("scene_change", 1, 0)
