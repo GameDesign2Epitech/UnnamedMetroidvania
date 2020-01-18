@@ -64,13 +64,13 @@ func _physics_process(delta):
 func _process(delta):
 	if position.x > 960 * scene_pos_x:
 		scene_pos_x += 1
-		#emit_signal("scene_change", 1, 0)
+		emit_signal("scene_change", 1, 0)
 	if position.x < 960 * (scene_pos_x - 1):
 		scene_pos_x -= 1
-		#emit_signal("scene_change", -1, 0)
+		emit_signal("scene_change", -1, 0)
 	if position.y > 544 * scene_pos_y:
 		scene_pos_y += 1
-		#emit_signal("scene_change", 0, 1)
+		emit_signal("scene_change", 0, 1)
 	if position.y < 544 * (scene_pos_y -1):
 		scene_pos_y -= 1
-		#emit_signal("scene_change", 0, -1)
+		emit_signal("scene_change", 0, -1)
