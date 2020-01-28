@@ -34,3 +34,10 @@ func _move_towards_goal(delta):
 func _process(delta):
 	if is_moving:
 		_move_towards_goal(delta)
+
+func _on_Player_toggle_on():
+	$overlay.animation = "on"
+
+
+func _on_Player_toggle_off():
+	$overlay.animation = "off"

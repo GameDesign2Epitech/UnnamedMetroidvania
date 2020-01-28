@@ -1,6 +1,8 @@
 extends KinematicBody2D
 
 signal scene_change
+signal toggle_on
+signal toggle_off
 
 export (int) var run_speed = 100
 export (int) var jump_speed = -400
@@ -10,9 +12,14 @@ export (bool) var can_double_jump = true
 var velocity = Vector2()
 var jumping = false
 var double_jumping = false
+var is_on_terminal = false
+var state = false
 
 var scene_pos_x = 1
 var scene_pos_y = 1
+
+func _ready():
+	$E.visible = false
 
 func get_input():
 	#Stocker les inputs
@@ -62,7 +69,6 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity, Vector2(0, -1))
 
 func _process(delta):
-	#print(str(is_on_floor()))
 	#Si on sort de l'écran, envoyer un signal à la caméra pour qu'elle bouge
 	if position.x > 960 * scene_pos_x:
 		scene_pos_x += 1
@@ -76,3 +82,21 @@ func _process(delta):
 	if position.y < 544 * (scene_pos_y -1):
 		scene_pos_y -= 1
 		emit_signal("scene_change", 0, -1)
+	
+	if Input.is_action_just_released("use") and is_on_terminal:
+		if state:
+			can_double_jump = true
+			state = false
+			emit_signal("toggle_off")
+		else:
+			can_double_jump = false
+			state = true
+			emit_signal("toggle_on")
+
+func _on_Terminal_player_entered():
+	is_on_terminal = true
+	$E.visible = true
+
+func _on_Terminal_player_left():
+	is_on_terminal = false
+	$E.visible = false
