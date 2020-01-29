@@ -14,6 +14,7 @@ var jumping = false
 var double_jumping = false
 var is_on_terminal = false
 var state = false
+var cursor_mode = false
 
 var scene_pos_x = 1
 var scene_pos_y = 1
@@ -28,30 +29,51 @@ func get_input():
 	var left = Input.is_action_pressed('ui_left')
 	var jump = Input.is_action_just_pressed('jump')
 	var jump_cut = Input.is_action_just_released('jump')
+	var space = Input.is_action_just_pressed('ui_select')
+	
+	if space and state:
+		if cursor_mode:
+			cursor_mode = false
+			$Cursor.enabled = false
+		else:
+			cursor_mode = true
+			$Cursor.enabled = true
+	
 	#Animation au sol
 	if is_on_floor():
 		$AnimatedSprite.animation = "idle"
-	#Condition de saut
-	if jump and is_on_floor():
-		jumping = true
-		velocity.y = jump_speed
-		$AnimatedSprite.animation = "jump"
-	#Condition de double-saut
-	if jump and !double_jumping and can_double_jump and !is_on_floor():
-		double_jumping = true
-		velocity.y = jump_speed
-		$AnimatedSprite.animation = "jump"
-	#Fait un saut court si le bouton de saut n'est pas maintenu
-	if jump_cut and !is_on_floor():
-		if velocity.y < -200:
-			velocity.y = -200
-	#Calcul de la vélocité et changement de sprite en fonction de la direction
-	if right:
-		velocity.x += run_speed
-		$AnimatedSprite.flip_h = false
-	if left:
-		velocity.x -= run_speed
-		$AnimatedSprite.flip_h = true
+	
+	if !cursor_mode:
+		#Condition de saut
+		if jump and is_on_floor():
+			jumping = true
+			velocity.y = jump_speed
+			$AnimatedSprite.animation = "jump"
+		#Condition de double-saut
+		if jump and !double_jumping and can_double_jump and !is_on_floor():
+			double_jumping = true
+			velocity.y = jump_speed
+			$AnimatedSprite.animation = "jump"
+		#Fait un saut court si le bouton de saut n'est pas maintenu
+		if jump_cut and !is_on_floor():
+			if velocity.y < -200:
+				velocity.y = -200
+		#Calcul de la vélocité et changement de sprite en fonction de la direction
+		if right:
+			velocity.x += run_speed
+			$AnimatedSprite.flip_h = false
+		if left:
+			velocity.x -= run_speed
+			$AnimatedSprite.flip_h = true
+		if Input.is_action_just_released("use") and is_on_terminal:
+			if state:
+				can_double_jump = true
+				state = false
+				emit_signal("toggle_off")
+			else:
+				can_double_jump = false
+				state = true
+				emit_signal("toggle_on")
 	
 func _physics_process(delta):
 	get_input()
@@ -94,16 +116,6 @@ func _process(delta):
 		state = false
 		emit_signal("toggle_off")
 		emit_signal("scene_change", 0, -1)
-	
-	if Input.is_action_just_released("use") and is_on_terminal:
-		if state:
-			can_double_jump = true
-			state = false
-			emit_signal("toggle_off")
-		else:
-			can_double_jump = false
-			state = true
-			emit_signal("toggle_on")
 
 func _on_Terminal_player_entered():
 	is_on_terminal = true
