@@ -31,3 +31,9 @@ func _process(delta):
 		_move_towards_goal(delta)
 	else:
 		$AnimatedSprite.animation = "disabled"
+
+func toggle_state():
+	if enabled:
+		enabled = false
+	else:
+		enabled = true

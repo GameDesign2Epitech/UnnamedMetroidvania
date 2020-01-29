@@ -68,3 +68,10 @@ frames = SubResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Cursor"]
 shape = SubResource( 5 )
+
+[node name="E" type="AnimatedSprite" parent="Cursor"]
+position = Vector2( 0, -35 )
+scale = Vector2( 2, 2 )
+frames = SubResource( 3 )
+[connection signal="body_entered" from="Cursor" to="Cursor" method="_on_Cursor_body_entered"]
+[connection signal="body_exited" from="Cursor" to="Cursor" method="_on_Cursor_body_exited"]
