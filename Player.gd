@@ -72,15 +72,27 @@ func _process(delta):
 	#Si on sort de l'écran, envoyer un signal à la caméra pour qu'elle bouge
 	if position.x > 960 * scene_pos_x:
 		scene_pos_x += 1
+		can_double_jump = true
+		state = false
+		emit_signal("toggle_off")
 		emit_signal("scene_change", 1, 0)
 	if position.x < 960 * (scene_pos_x - 1):
 		scene_pos_x -= 1
+		can_double_jump = true
+		state = false
+		emit_signal("toggle_off")
 		emit_signal("scene_change", -1, 0)
 	if position.y > 544 * scene_pos_y:
 		scene_pos_y += 1
+		can_double_jump = true
+		state = false
+		emit_signal("toggle_off")
 		emit_signal("scene_change", 0, 1)
 	if position.y < 544 * (scene_pos_y -1):
 		scene_pos_y -= 1
+		can_double_jump = true
+		state = false
+		emit_signal("toggle_off")
 		emit_signal("scene_change", 0, -1)
 	
 	if Input.is_action_just_released("use") and is_on_terminal:
