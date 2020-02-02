@@ -37,3 +37,6 @@ func toggle_state():
 		enabled = false
 	else:
 		enabled = true
+
+func set_state(new_state):
+	enabled = new_state

@@ -94,28 +94,24 @@ func _process(delta):
 	#Si on sort de l'écran, envoyer un signal à la caméra pour qu'elle bouge
 	if position.x > 960 * scene_pos_x:
 		scene_pos_x += 1
-		can_double_jump = true
-		state = false
-		emit_signal("toggle_off")
-		emit_signal("scene_change", 1, 0)
+		scene_change(1, 0)
 	if position.x < 960 * (scene_pos_x - 1):
 		scene_pos_x -= 1
-		can_double_jump = true
-		state = false
-		emit_signal("toggle_off")
-		emit_signal("scene_change", -1, 0)
+		scene_change(-1, 0)
 	if position.y > 544 * scene_pos_y:
 		scene_pos_y += 1
-		can_double_jump = true
-		state = false
-		emit_signal("toggle_off")
-		emit_signal("scene_change", 0, 1)
+		scene_change(0, 1)
 	if position.y < 544 * (scene_pos_y -1):
 		scene_pos_y -= 1
-		can_double_jump = true
-		state = false
-		emit_signal("toggle_off")
-		emit_signal("scene_change", 0, -1)
+		scene_change(0, -1)
+
+#Restaurer le double saut et désactiver tout les mécanismes lors d'un changement de salle
+func scene_change(x, y):
+	can_double_jump = true
+	state = false
+	emit_signal("toggle_off")
+	get_tree().call_group("activeable", "set_state", false)
+	emit_signal("scene_change", x, y)
 
 func _on_Terminal_player_entered():
 	is_on_terminal = true
