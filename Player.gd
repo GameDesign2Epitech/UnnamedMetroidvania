@@ -104,6 +104,8 @@ func _process(delta):
 	if position.y < 544 * (scene_pos_y -1):
 		scene_pos_y -= 1
 		scene_change(0, -1)
+	#Affiche la bulle E lorsqu'on est sur un terminal
+	$E.visible = is_on_terminal
 
 #Restaurer le double saut et désactiver tout les mécanismes lors d'un changement de salle
 func scene_change(x, y):
@@ -113,10 +115,10 @@ func scene_change(x, y):
 	get_tree().call_group("activeable", "set_state", false)
 	emit_signal("scene_change", x, y)
 
-func _on_Terminal_player_entered():
-	is_on_terminal = true
-	$E.visible = true
-
-func _on_Terminal_player_left():
-	is_on_terminal = false
-	$E.visible = false
+#func _on_Terminal_player_entered():
+#	is_on_terminal = true
+#	$E.visible = true
+#
+#func _on_Terminal_player_left():
+#	is_on_terminal = false
+#	$E.visible = false

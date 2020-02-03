@@ -3,7 +3,7 @@ extends KinematicBody2D
 export (bool) var enabled = false
 export (NodePath) var target
 export (int) var speed = 100
-export (int) var accuracy = 10
+export (int) var accuracy = 2
 var goal = Vector2()
 var next_goal = Vector2()
 var direction = Vector2()

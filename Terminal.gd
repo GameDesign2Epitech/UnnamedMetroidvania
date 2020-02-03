@@ -4,10 +4,11 @@ signal player_entered
 signal player_left
 
 func _on_Terminal_body_entered(body):
-	if body.name == "Player":
-		emit_signal("player_entered")
+	#if body.name == "Player":
+	if body.is_in_group("Player"):
+		get_tree().set_group("Player", "is_on_terminal", true)
 
 
 func _on_Terminal_body_exited(body):
-	if body.name == "Player":
-		emit_signal("player_left")
+	if body.is_in_group("Player"):
+		get_tree().set_group("Player", "is_on_terminal", false)
