@@ -16,6 +16,7 @@ var is_on_terminal = false
 var state = false
 var cursor_mode = false
 
+
 var scene_pos_x = 1
 var scene_pos_y = 1
 
@@ -122,3 +123,7 @@ func scene_change(x, y):
 #func _on_Terminal_player_left():
 #	is_on_terminal = false
 #	$E.visible = false
+
+
+func _on_SwitchPower_give_power():
+	$Cursor.has_switch_power = true

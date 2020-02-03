@@ -4,6 +4,7 @@ export (int) var speed = 100
 var enabled = false
 var velocity = Vector2()
 var selection = null
+var has_switch_power = false
 
 func _ready():
 	visible = false
@@ -29,7 +30,7 @@ func _process(delta):
 			velocity.y += 1
 		velocity = velocity.normalized() * speed
 		position += velocity * delta
-		if use and selection != null:
+		if use and selection != null and has_switch_power:
 			selection.toggle_state()
 	else:
 		position.x = 0
@@ -37,7 +38,7 @@ func _process(delta):
 
 
 func _on_Cursor_body_entered(body):
-	if enabled and body.has_method("toggle_state"):
+	if enabled and body.has_method("toggle_state") and has_switch_power:
 		selection = body
 		$E.visible = true
 

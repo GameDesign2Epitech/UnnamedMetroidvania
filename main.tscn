@@ -37,6 +37,7 @@ jump_speed = -500
 gravity = 1100
 
 [node name="Camera2D" parent="." instance=ExtResource( 7 )]
+[connection signal="give_power" from="SwitchPower" to="Player" method="_on_SwitchPower_give_power"]
 [connection signal="scene_change" from="Player" to="Camera2D" method="_on_Player_scene_change"]
 [connection signal="toggle_off" from="Player" to="Camera2D" method="_on_Player_toggle_off"]
 [connection signal="toggle_on" from="Player" to="Camera2D" method="_on_Player_toggle_on"]
