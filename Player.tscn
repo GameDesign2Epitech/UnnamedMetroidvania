@@ -1,11 +1,12 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/mario_idle.png" type="Texture" id=2]
 [ext_resource path="res://assets/mario_jump.png" type="Texture" id=3]
-[ext_resource path="res://assets/e.png" type="Texture" id=4]
-[ext_resource path="res://Cursor.gd" type="Script" id=5]
-[ext_resource path="res://assets/cursor.png" type="Texture" id=6]
+[ext_resource path="res://assets/mario_die.png" type="Texture" id=4]
+[ext_resource path="res://assets/e.png" type="Texture" id=5]
+[ext_resource path="res://Cursor.gd" type="Script" id=6]
+[ext_resource path="res://assets/cursor.png" type="Texture" id=7]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -18,6 +19,11 @@ animations = [ {
 "loop": false,
 "name": "jump",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "dead",
+"speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
@@ -25,7 +31,7 @@ extents = Vector2( 14.1935, 15.9617 )
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ ExtResource( 4 ) ],
+"frames": [ ExtResource( 5 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -33,7 +39,7 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [ ExtResource( 6 ) ],
+"frames": [ ExtResource( 7 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
@@ -61,7 +67,7 @@ scale = Vector2( 2, 2 )
 frames = SubResource( 3 )
 
 [node name="Cursor" type="Area2D" parent="."]
-script = ExtResource( 5 )
+script = ExtResource( 6 )
 speed = 300
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Cursor"]

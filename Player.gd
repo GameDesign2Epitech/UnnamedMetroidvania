@@ -10,6 +10,7 @@ export (int) var gravity = 1200
 export (bool) var can_double_jump = true
 
 var velocity = Vector2()
+var respawn_point = Vector2()
 var jumping = false
 var double_jumping = false
 var is_on_terminal = false
@@ -22,6 +23,7 @@ var scene_pos_y = 1
 
 func _ready():
 	$E.visible = false
+	respawn_point = position
 
 func get_input():
 	#Stocker les inputs
@@ -115,6 +117,7 @@ func scene_change(x, y):
 	emit_signal("toggle_off")
 	get_tree().call_group("activeable", "set_state", false)
 	emit_signal("scene_change", x, y)
+	respawn_point = position
 
 #func _on_Terminal_player_entered():
 #	is_on_terminal = true
@@ -124,6 +127,14 @@ func scene_change(x, y):
 #	is_on_terminal = false
 #	$E.visible = false
 
+func player_die():
+	#TODO: Ajouter un timer avec l'animation de mort puis respawn
+	#$AnimatedSprite.animation = "dead"
+	can_double_jump = true
+	state = false
+	emit_signal("toggle_off")
+	get_tree().call_group("activeable", "set_state", false)
+	position = respawn_point
 
 func _on_SwitchPower_give_power():
 	$Cursor.has_switch_power = true

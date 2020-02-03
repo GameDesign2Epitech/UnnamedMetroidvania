@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/52571.png-dc5ff6027af2d50880867bb401840bbd.stex"
+path="res://.import/spike.png-6088412b46cc15d96e4d9aa266d475a2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/52571.png"
-dest_files=[ "res://.import/52571.png-dc5ff6027af2d50880867bb401840bbd.stex" ]
+source_file="res://assets/spike.png"
+dest_files=[ "res://.import/spike.png-6088412b46cc15d96e4d9aa266d475a2.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
