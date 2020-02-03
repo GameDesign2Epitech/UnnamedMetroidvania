@@ -5,6 +5,9 @@ var direction = Vector2()
 var goal = Vector2()
 var is_moving = false
 
+func _ready():
+	$overlay.visible = false
+
 func _on_Player_scene_change(x, y):
 	#Calcul de la futur position de la caméra
 	direction.x = x
@@ -41,3 +44,7 @@ func _on_Player_toggle_on():
 
 func _on_Player_toggle_off():
 	$overlay.animation = "off"
+
+
+func _on_SwitchPower_give_power():
+	$overlay.visible = true

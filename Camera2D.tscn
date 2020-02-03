@@ -25,6 +25,7 @@ script = ExtResource( 1 )
 speed = 500
 
 [node name="overlay" type="AnimatedSprite" parent="."]
-scale = Vector2( 5, 5 )
+modulate = Color( 1, 1, 1, 0.752941 )
+scale = Vector2( 5.2, 5.2 )
 frames = SubResource( 1 )
 animation = "off"
