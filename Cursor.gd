@@ -44,5 +44,6 @@ func _on_Cursor_body_entered(body):
 
 
 func _on_Cursor_body_exited(body):
-	selection = null
-	$E.visible = false
+	if body.has_method("toggle_state"):
+		selection = null
+		$E.visible = false

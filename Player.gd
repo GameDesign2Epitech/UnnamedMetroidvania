@@ -84,6 +84,7 @@ func get_input():
 				can_double_jump = true
 				state = false
 				emit_signal("toggle_off")
+				get_tree().call_group("activeable", "set_state", false)
 			else:
 				can_double_jump = false
 				state = true
@@ -126,7 +127,7 @@ func _process(delta):
 		scene_pos_y -= 1
 		scene_change(0, -1)
 	#Affiche la bulle E lorsqu'on est sur un terminal
-	$E.visible = is_on_terminal
+	$E.visible = is_on_terminal and !cursor_mode
 
 #Restaurer le double saut et désactiver tout les mécanismes lors d'un changement de salle
 func scene_change(x, y):
