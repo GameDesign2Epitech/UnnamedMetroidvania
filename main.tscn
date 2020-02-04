@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Grid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://TileMap.tscn" type="PackedScene" id=2]
@@ -11,7 +11,8 @@
 [ext_resource path="res://assets/space_pressed.png" type="Texture" id=9]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Camera2D.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Spikes.tscn" type="PackedScene" id=12]
+[ext_resource path="res://SpikeSet.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Spikes.tscn" type="PackedScene" id=13]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -73,8 +74,10 @@ gravity = 1100
 
 [node name="Camera2D" parent="." instance=ExtResource( 11 )]
 
-[node name="Spikes" parent="." instance=ExtResource( 12 )]
-position = Vector2( 3088, 1040 )
+[node name="SpikeSet" parent="." instance=ExtResource( 12 )]
+position = Vector2( 3920, 1040 )
+spike_scene = ExtResource( 13 )
+width_right = 26
 [connection signal="give_power" from="SwitchPower" to="Camera2D" method="_on_SwitchPower_give_power"]
 [connection signal="give_power" from="SwitchPower" to="Player" method="_on_SwitchPower_give_power"]
 [connection signal="scene_change" from="Player" to="Camera2D" method="_on_Player_scene_change"]
