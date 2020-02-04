@@ -17,6 +17,8 @@ var is_on_terminal = false
 var state = false
 var cursor_mode = false
 var is_dead = false
+var has_gravity_power = false
+var gravity_direction = 1
 
 var rebirth_scene = preload("res://Rebirth_particle.tscn")
 
@@ -27,6 +29,12 @@ func _ready():
 	$E.visible = false
 	respawn_point = position
 
+func jump_cut_condition():
+	if gravity_direction > 0:
+		return (velocity.y < -200)
+	else:
+		return (velocity.y > 200)
+
 func get_input():
 	#Stocker les inputs
 	velocity.x = 0
@@ -35,6 +43,7 @@ func get_input():
 	var jump = Input.is_action_just_pressed('jump')
 	var jump_cut = Input.is_action_just_released('jump')
 	var space = Input.is_action_just_pressed('ui_select')
+	var switch = Input.is_action_just_pressed('switch')
 	
 	if space and state:
 		if cursor_mode:
@@ -52,17 +61,17 @@ func get_input():
 		#Condition de saut
 		if jump and is_on_floor():
 			jumping = true
-			velocity.y = jump_speed
+			velocity.y = jump_speed * gravity_direction
 			$AnimatedSprite.animation = "jump"
 		#Condition de double-saut
 		if jump and !double_jumping and can_double_jump and !is_on_floor():
 			double_jumping = true
-			velocity.y = jump_speed
+			velocity.y = jump_speed * gravity_direction
 			$AnimatedSprite.animation = "jump"
 		#Fait un saut court si le bouton de saut n'est pas maintenu
 		if jump_cut and !is_on_floor():
-			if velocity.y < -200:
-				velocity.y = -200
+			if jump_cut_condition():
+				velocity.y = -200 * gravity_direction
 		#Calcul de la vélocité et changement de sprite en fonction de la direction
 		if right:
 			velocity.x += run_speed
@@ -79,13 +88,19 @@ func get_input():
 				can_double_jump = false
 				state = true
 				emit_signal("toggle_on")
+		if switch and state and has_gravity_power:
+			gravity_direction = gravity_direction * (-1)
+			if $AnimatedSprite.flip_v:
+				$AnimatedSprite.flip_v = false
+			else:
+				$AnimatedSprite.flip_v = true
 	
 func _physics_process(delta):
 	if !is_dead:
 		get_input()
 		#Calcul de la vélocité en fonction de la gravité
-		if velocity.y < gravity:
-			velocity.y += gravity * delta
+		if abs(velocity.y) < abs(gravity * gravity_direction):
+			velocity.y += gravity * delta * gravity_direction
 		#Réinitialisation des variables de saut lorsqu'on touche le sol
 		if jumping and is_on_floor():
 			jumping = false
@@ -94,7 +109,7 @@ func _physics_process(delta):
 			jumping = false
 			double_jumping = false
 		#Mouvement du personnage
-		velocity = move_and_slide(velocity, Vector2(0, -1))
+		velocity = move_and_slide(velocity, Vector2(0, -gravity_direction))
 
 func _process(delta):
 	#Si on sort de l'écran, envoyer un signal à la caméra pour qu'elle bouge
@@ -117,6 +132,8 @@ func _process(delta):
 func scene_change(x, y):
 	can_double_jump = true
 	state = false
+	gravity_direction = 1
+	$AnimatedSprite.flip_v = false
 	emit_signal("toggle_off")
 	get_tree().call_group("activeable", "set_state", false)
 	emit_signal("scene_change", x, y)
@@ -140,6 +157,8 @@ func player_die():
 func _on_SwitchPower_give_power():
 	$Cursor.has_switch_power = true
 
+func _on_GravityPower_give_power():
+	has_gravity_power = true
 
 func _on_DeathTimer_timeout():
 	var rebirth = rebirth_scene.instance()
@@ -149,4 +168,6 @@ func _on_DeathTimer_timeout():
 	emit_signal("toggle_off")
 	get_tree().call_group("activeable", "set_state", false)
 	is_dead = false
+	gravity_direction = 1
+	$AnimatedSprite.flip_v = false
 	position = respawn_point
