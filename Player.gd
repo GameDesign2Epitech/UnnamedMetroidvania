@@ -16,7 +16,9 @@ var double_jumping = false
 var is_on_terminal = false
 var state = false
 var cursor_mode = false
+var is_dead = false
 
+var rebirth_scene = preload("res://Rebirth_particle.tscn")
 
 var scene_pos_x = 1
 var scene_pos_y = 1
@@ -79,19 +81,20 @@ func get_input():
 				emit_signal("toggle_on")
 	
 func _physics_process(delta):
-	get_input()
-	#Calcul de la vélocité en fonction de la gravité
-	if velocity.y < gravity:
-		velocity.y += gravity * delta
-	#Réinitialisation des variables de saut lorsqu'on touche le sol
-	if jumping and is_on_floor():
-		jumping = false
-		double_jumping = false
-	if double_jumping and is_on_floor():
-		jumping = false
-		double_jumping = false
-	#Mouvement du personnage
-	velocity = move_and_slide(velocity, Vector2(0, -1))
+	if !is_dead:
+		get_input()
+		#Calcul de la vélocité en fonction de la gravité
+		if velocity.y < gravity:
+			velocity.y += gravity * delta
+		#Réinitialisation des variables de saut lorsqu'on touche le sol
+		if jumping and is_on_floor():
+			jumping = false
+			double_jumping = false
+		if double_jumping and is_on_floor():
+			jumping = false
+			double_jumping = false
+		#Mouvement du personnage
+		velocity = move_and_slide(velocity, Vector2(0, -1))
 
 func _process(delta):
 	#Si on sort de l'écran, envoyer un signal à la caméra pour qu'elle bouge
@@ -118,6 +121,8 @@ func scene_change(x, y):
 	get_tree().call_group("activeable", "set_state", false)
 	emit_signal("scene_change", x, y)
 	respawn_point = position
+	if x != 0:
+		respawn_point.x = position.x + x * 24
 
 #func _on_Terminal_player_entered():
 #	is_on_terminal = true
@@ -128,13 +133,20 @@ func scene_change(x, y):
 #	$E.visible = false
 
 func player_die():
-	#TODO: Ajouter un timer avec l'animation de mort puis respawn
-	#$AnimatedSprite.animation = "dead"
+	$AnimatedSprite.animation = "dead"
+	is_dead = true
+	$DeathTimer.start()
+
+func _on_SwitchPower_give_power():
+	$Cursor.has_switch_power = true
+
+
+func _on_DeathTimer_timeout():
+	var rebirth = rebirth_scene.instance()
+	add_child(rebirth)
 	can_double_jump = true
 	state = false
 	emit_signal("toggle_off")
 	get_tree().call_group("activeable", "set_state", false)
+	is_dead = false
 	position = respawn_point
-
-func _on_SwitchPower_give_power():
-	$Cursor.has_switch_power = true

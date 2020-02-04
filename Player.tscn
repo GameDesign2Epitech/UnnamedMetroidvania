@@ -81,5 +81,9 @@ shape = SubResource( 5 )
 position = Vector2( 0, -35 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 3 )
+
+[node name="DeathTimer" type="Timer" parent="."]
+one_shot = true
 [connection signal="body_entered" from="Cursor" to="Cursor" method="_on_Cursor_body_entered"]
 [connection signal="body_exited" from="Cursor" to="Cursor" method="_on_Cursor_body_exited"]
+[connection signal="timeout" from="DeathTimer" to="." method="_on_DeathTimer_timeout"]
