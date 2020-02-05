@@ -44,6 +44,7 @@ func get_input():
 	var jump_cut = Input.is_action_just_released('jump')
 	var space = Input.is_action_just_pressed('ui_select')
 	var switch = Input.is_action_just_pressed('switch')
+	var cancel = Input.is_action_just_pressed('ui_cancel')
 	
 	if space and state:
 		if cursor_mode:
@@ -52,6 +53,10 @@ func get_input():
 		else:
 			cursor_mode = true
 			$Cursor.enabled = true
+	
+	#Quitter le jeu si on appuie sur echap
+	if cancel:
+		get_tree().quit()
 	
 	#Animation au sol
 	if is_on_floor():

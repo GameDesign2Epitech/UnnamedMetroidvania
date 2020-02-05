@@ -13,7 +13,7 @@ func _ready():
 	for i in range(width_left):
 		spike = spike_scene.instance()
 		add_child(spike)
-		spike.position.x = (i + 1) * 32
+		spike.position.x = (i + 1) * -32
 		spike.position.y = 0
 	for i in range(width_right):
 		spike = spike_scene.instance()
