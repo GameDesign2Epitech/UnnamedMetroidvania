@@ -61,7 +61,6 @@ func get_input():
 	#Animation au sol
 	if is_on_floor():
 		$AnimatedSprite.animation = "idle"
-	
 	if !cursor_mode:
 		#Condition de saut
 		if jump and is_on_floor():
@@ -158,6 +157,7 @@ func scene_change(x, y):
 func player_die():
 	$AnimatedSprite.animation = "dead"
 	is_dead = true
+	velocity = Vector2()
 	$DeathTimer.start()
 
 func _on_SwitchPower_give_power():
