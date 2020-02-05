@@ -27,7 +27,7 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 14.1935, 15.9617 )
+extents = Vector2( 12.0865, 15.9972 )
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
