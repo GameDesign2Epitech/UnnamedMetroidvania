@@ -18,6 +18,7 @@ var state = false
 var cursor_mode = false
 var is_dead = false
 var has_gravity_power = false
+var has_respawn_point = true
 var gravity_direction = 1
 
 var rebirth_scene = preload("res://Rebirth_particle.tscn")
@@ -115,6 +116,10 @@ func _physics_process(delta):
 			double_jumping = false
 		#Mouvement du personnage
 		velocity = move_and_slide(velocity, Vector2(0, -gravity_direction))
+		
+		if is_on_floor() and !has_respawn_point:
+			respawn_point = position
+			has_respawn_point = true
 
 func _process(delta):
 	#Si on sort de l'écran, envoyer un signal à la caméra pour qu'elle bouge
@@ -142,7 +147,11 @@ func scene_change(x, y):
 	emit_signal("toggle_off")
 	get_tree().call_group("activeable", "set_state", false)
 	emit_signal("scene_change", x, y)
-	respawn_point = position
+	if y == -1:
+		has_respawn_point = false
+	else:
+		respawn_point = position
+		has_respawn_point = true
 	if x != 0:
 		respawn_point.x = position.x + x * 24
 
