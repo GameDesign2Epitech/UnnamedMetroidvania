@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Grid.tscn" type="PackedScene" id=1]
 [ext_resource path="res://tilemaps/tile_map_world1.tres" type="TileSet" id=2]
@@ -21,7 +21,8 @@
 [ext_resource path="res://assets/one_time.png" type="Texture" id=19]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=20]
 [ext_resource path="res://Camera2D.tscn" type="PackedScene" id=21]
-[ext_resource path="res://assets/arrow.png" type="Texture" id=22]
+[ext_resource path="res://assets/arrow_right.png" type="Texture" id=22]
+[ext_resource path="res://background/parallax_background.png" type="Texture" id=23]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -68,7 +69,7 @@ __meta__ = {
 }
 
 [node name="Grid" parent="." instance=ExtResource( 1 )]
-position = Vector2( 3838.41, 1087.96 )
+position = Vector2( 3839.56, 543.809 )
 scale = Vector2( 2, 2.014 )
 
 [node name="tilemap_bg_layer_fix" type="TileMap" parent="."]
@@ -97,38 +98,38 @@ animation = "3"
 position = Vector2( 3254.47, 624.564 )
 
 [node name="Terminal" parent="." instance=ExtResource( 6 )]
-position = Vector2( 2991.25, 840.324 )
+position = Vector2( 2991, 840 )
 
 [node name="Terminal2" parent="." instance=ExtResource( 6 )]
 position = Vector2( 4384.52, 999.927 )
 
 [node name="Terminal3" parent="." instance=ExtResource( 6 )]
-position = Vector2( 6595.93, 1000.14 )
+position = Vector2( 6595, 1000 )
 scale = Vector2( -1, 1 )
 
 [node name="Terminal4" parent="." instance=ExtResource( 6 )]
-position = Vector2( 5638.15, 904.485 )
+position = Vector2( 5638, 904 )
 scale = Vector2( -1, 1 )
 
 [node name="Terminal5" parent="." instance=ExtResource( 6 )]
-position = Vector2( 5669.42, 296.37 )
+position = Vector2( 5669, 296 )
 scale = Vector2( -1, 1 )
 
 [node name="Terminal6" parent="." instance=ExtResource( 6 )]
 position = Vector2( 3932.6, 393.034 )
 
 [node name="Terminal7" parent="." instance=ExtResource( 6 )]
-position = Vector2( 4286.81, -184.015 )
+position = Vector2( 4286, -184 )
 
 [node name="Terminal8" parent="." instance=ExtResource( 6 )]
-position = Vector2( 5022.33, -87.3682 )
+position = Vector2( 5022, -88 )
 
 [node name="Platform2" parent="." instance=ExtResource( 7 )]
 position = Vector2( 4671.87, 1017.4 )
 target = NodePath("../../main/Target2")
 
 [node name="Platform" parent="." instance=ExtResource( 7 )]
-position = Vector2( 3616, 799.568 )
+position = Vector2( 3616, 800 )
 target = NodePath("../../main/Target")
 
 [node name="Platform3" parent="." instance=ExtResource( 7 )]
@@ -137,48 +138,46 @@ scale = Vector2( 2, -2 )
 target = NodePath("../../main/Target3")
 
 [node name="Platform4" parent="." instance=ExtResource( 7 )]
-position = Vector2( 5120, -399.991 )
+position = Vector2( 5120, -400 )
 target = NodePath("../../main/Target4")
 
 [node name="Platform5" parent="." instance=ExtResource( 7 )]
-position = Vector2( 5248, -113.84 )
+position = Vector2( 5248, -113 )
 target = NodePath("../../main/Target5")
 
 [node name="Platform6" parent="." instance=ExtResource( 7 )]
-position = Vector2( 4319.35, -470 )
+position = Vector2( 4319, -470 )
 scale = Vector2( 2, -2 )
 target = NodePath("../../main/Target6")
 
 [node name="Target" parent="." instance=ExtResource( 8 )]
-position = Vector2( 3617.67, 1002.95 )
+position = Vector2( 3616, 1000 )
 
 [node name="Target2" parent="." instance=ExtResource( 8 )]
 position = Vector2( 4671.87, 728.752 )
 
 [node name="Target3" parent="." instance=ExtResource( 8 )]
-position = Vector2( 4095.72, -186 )
+position = Vector2( 4096, -186 )
 
 [node name="Target4" parent="." instance=ExtResource( 8 )]
-position = Vector2( 5120, -199.762 )
+position = Vector2( 5120, -199 )
 
 [node name="Target5" parent="." instance=ExtResource( 8 )]
-position = Vector2( 5248, -222.394 )
+position = Vector2( 5248, -222 )
 
 [node name="Target6" parent="." instance=ExtResource( 8 )]
-position = Vector2( 4636.64, -469.023 )
+position = Vector2( 4636, -470 )
 
 [node name="PressSpace" type="AnimatedSprite" parent="."]
 position = Vector2( 3343.29, 816.23 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 1 )
-frame = 1
 playing = true
 
 [node name="PressS" type="AnimatedSprite" parent="."]
 position = Vector2( 6651.97, 980.517 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 2 )
-frame = 1
 playing = true
 
 [node name="SpikeSet" parent="." instance=ExtResource( 13 )]
@@ -222,10 +221,10 @@ width_left = 1
 position = Vector2( 6417.28, 987.274 )
 
 [node name="Upx2" type="AnimatedSprite" parent="."]
+editor/display_folded = true
 position = Vector2( 1113.25, 283.418 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 3 )
-frame = 1
 playing = true
 
 [node name="two_times" type="Sprite" parent="Upx2"]
@@ -233,9 +232,11 @@ position = Vector2( 20.2419, 1.66769 )
 texture = ExtResource( 17 )
 
 [node name="Upx3" type="AnimatedSprite" parent="."]
+editor/display_folded = true
 position = Vector2( 3009.28, 925.66 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 3 )
+frame = 1
 playing = true
 script = ExtResource( 18 )
 
@@ -256,11 +257,21 @@ gravity = 1100
 [node name="Terminal9" parent="." instance=ExtResource( 6 )]
 position = Vector2( 2931.07, 929.147 )
 
-[node name="arrow" type="Sprite" parent="."]
-position = Vector2( 2966.99, 929.147 )
-rotation = -0.785398
+[node name="arrow_right" type="Sprite" parent="."]
+position = Vector2( 2975, 929 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 22 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+editor/display_folded = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.1, 0.1 )
+
+[node name="parallax_background" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( -464.344, -330.768 )
+texture = ExtResource( 23 )
+centered = false
 [connection signal="give_power" from="SwitchPower" to="Camera2D" method="_on_SwitchPower_give_power"]
 [connection signal="give_power" from="SwitchPower" to="Player" method="_on_SwitchPower_give_power"]
 [connection signal="give_power" from="GravityPower" to="Player" method="_on_GravityPower_give_power"]
