@@ -133,6 +133,7 @@ target = NodePath("../../main/Target")
 
 [node name="Platform3" parent="." instance=ExtResource( 7 )]
 position = Vector2( 3936, -186 )
+scale = Vector2( 2, -2 )
 target = NodePath("../../main/Target3")
 
 [node name="Platform4" parent="." instance=ExtResource( 7 )]
@@ -145,6 +146,7 @@ target = NodePath("../../main/Target5")
 
 [node name="Platform6" parent="." instance=ExtResource( 7 )]
 position = Vector2( 4319.35, -470 )
+scale = Vector2( 2, -2 )
 target = NodePath("../../main/Target6")
 
 [node name="Target" parent="." instance=ExtResource( 8 )]
