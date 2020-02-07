@@ -40,7 +40,6 @@ func _clear_childs():
 	var children = get_children()
 	var children_count = get_child_count()
 	for i in range(1, children_count):
-		print(i)
 		var child = children[i]
 		remove_child(child)
 		child.queue_free()
