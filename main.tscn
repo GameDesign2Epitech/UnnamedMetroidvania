@@ -68,7 +68,7 @@ __meta__ = {
 }
 
 [node name="Grid" parent="." instance=ExtResource( 1 )]
-position = Vector2( 3840, 1087.96 )
+position = Vector2( 3838.41, 1087.96 )
 scale = Vector2( 2, 2.014 )
 
 [node name="tilemap_bg_layer_fix" type="TileMap" parent="."]
@@ -94,7 +94,7 @@ position = Vector2( 3612.7, 778 )
 animation = "3"
 
 [node name="SwitchPower" parent="." instance=ExtResource( 5 )]
-position = Vector2( 3254.47, 180.295 )
+position = Vector2( 3254.47, 624.564 )
 
 [node name="Terminal" parent="." instance=ExtResource( 6 )]
 position = Vector2( 2991.25, 840.324 )
@@ -137,11 +137,11 @@ scale = Vector2( 2, -2 )
 target = NodePath("../../main/Target3")
 
 [node name="Platform4" parent="." instance=ExtResource( 7 )]
-position = Vector2( 5120, -391.905 )
+position = Vector2( 5120, -399.991 )
 target = NodePath("../../main/Target4")
 
 [node name="Platform5" parent="." instance=ExtResource( 7 )]
-position = Vector2( 5248, -71.205 )
+position = Vector2( 5248, -113.84 )
 target = NodePath("../../main/Target5")
 
 [node name="Platform6" parent="." instance=ExtResource( 7 )]
@@ -150,7 +150,7 @@ scale = Vector2( 2, -2 )
 target = NodePath("../../main/Target6")
 
 [node name="Target" parent="." instance=ExtResource( 8 )]
-position = Vector2( 3616, 1049.72 )
+position = Vector2( 3617.67, 1002.95 )
 
 [node name="Target2" parent="." instance=ExtResource( 8 )]
 position = Vector2( 4671.87, 728.752 )
@@ -159,7 +159,7 @@ position = Vector2( 4671.87, 728.752 )
 position = Vector2( 4095.72, -186 )
 
 [node name="Target4" parent="." instance=ExtResource( 8 )]
-position = Vector2( 5120, -188 )
+position = Vector2( 5120, -199.762 )
 
 [node name="Target5" parent="." instance=ExtResource( 8 )]
 position = Vector2( 5248, -222.394 )
