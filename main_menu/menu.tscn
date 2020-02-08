@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://main_menu/menu.gd" type="Script" id=1]
 [ext_resource path="res://background/parallax_background.png" type="Texture" id=2]
 [ext_resource path="res://UI/DFont.tres" type="DynamicFont" id=3]
+[ext_resource path="res://UI/styleboxflat_hover.tres" type="StyleBox" id=4]
+[ext_resource path="res://UI/styleboxflat_pressed.tres" type="StyleBox" id=5]
+[ext_resource path="res://UI/styleboxflat.tres" type="StyleBox" id=6]
 
 [node name="menu" type="Control"]
 anchor_right = 1.0
@@ -75,12 +78,21 @@ margin_right = 407.0
 margin_bottom = 174.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/margin_right = 30
+custom_constants/margin_top = 30
+custom_constants/margin_left = 30
+custom_constants/margin_bottom = 30
 
 [node name="Button" type="Button" parent="vbc/buttons/Control2"]
-margin_right = 269.0
-margin_bottom = 174.0
+margin_left = 30.0
+margin_top = 30.0
+margin_right = 239.0
+margin_bottom = 144.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/normal = ExtResource( 6 )
 shortcut_in_tooltip = false
 
 [node name="Label" type="Label" parent="vbc/buttons/Control2/Button"]
@@ -107,12 +119,21 @@ margin_right = 818.0
 margin_bottom = 174.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/margin_right = 30
+custom_constants/margin_top = 30
+custom_constants/margin_left = 30
+custom_constants/margin_bottom = 30
 
 [node name="Button" type="Button" parent="vbc/buttons/Control6"]
-margin_right = 269.0
-margin_bottom = 174.0
+margin_left = 30.0
+margin_top = 30.0
+margin_right = 239.0
+margin_bottom = 144.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 5 )
+custom_styles/normal = ExtResource( 6 )
 shortcut_in_tooltip = false
 
 [node name="Label" type="Label" parent="vbc/buttons/Control6/Button"]
@@ -140,5 +161,5 @@ margin_bottom = 540.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
-[connection signal="button_down" from="vbc/buttons/Control2/Button" to="." method="_on_play"]
-[connection signal="button_down" from="vbc/buttons/Control6/Button" to="." method="_on_quit"]
+[connection signal="pressed" from="vbc/buttons/Control2/Button" to="." method="_on_play"]
+[connection signal="pressed" from="vbc/buttons/Control6/Button" to="." method="_on_quit"]
