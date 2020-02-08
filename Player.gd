@@ -20,6 +20,7 @@ var is_dead = false
 var has_gravity_power = false
 var has_respawn_point = true
 var gravity_direction = 1
+var computer_activated = false
 
 var rebirth_scene = preload("res://Rebirth_particle.tscn")
 
@@ -28,6 +29,8 @@ var scene_pos_y = 1
 
 func _ready():
 	$E.visible = false
+	connect("toggle_on", self, "_on_toggle_on")
+	connect("toggle_off", self, "_on_toggle_off")	
 	respawn_point = position
 
 func jump_cut_condition():
@@ -66,11 +69,13 @@ func get_input():
 		#Condition de saut
 		if jump and is_on_floor():
 			jumping = true
+			$jump.play()
 			velocity.y = jump_speed * gravity_direction
 			$AnimatedSprite.animation = "jump"
 		#Condition de double-saut
 		if jump and !double_jumping and can_double_jump and !is_on_floor():
 			double_jumping = true
+			$djump.play()
 			velocity.y = jump_speed * gravity_direction
 			$AnimatedSprite.animation = "jump"
 		#Fait un saut court si le bouton de saut n'est pas maintenu
@@ -84,6 +89,8 @@ func get_input():
 		if left:
 			velocity.x -= run_speed
 			$AnimatedSprite.flip_h = true
+		if (right or left) and is_on_floor() and not $walk.is_playing():
+			$walk.play()
 		if Input.is_action_just_released("use") and is_on_terminal:
 			if state:
 				can_double_jump = true
@@ -186,3 +193,13 @@ func _on_DeathTimer_timeout():
 	gravity_direction = 1
 	$AnimatedSprite.flip_v = false
 	position = respawn_point
+
+
+func _on_toggle_off():
+	if computer_activated:
+		computer_activated = false
+		$computer_off.play()
+
+func _on_toggle_on():
+	computer_activated = true
+	$computer_on.play()
