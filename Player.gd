@@ -173,15 +173,16 @@ func scene_change(x, y):
 func player_die():
 	$AnimatedSprite.animation = "dead"
 	is_dead = true
+	if cursor_mode:
+		cursor_mode = false
+		$Cursor.enabled = false
 	velocity = Vector2()
 	$DeathTimer.start()
 
 func _on_SwitchPower_give_power():
-	$powerup.play()
 	$Cursor.has_switch_power = true
 
 func _on_GravityPower_give_power():
-	$powerup.play()
 	has_gravity_power = true
 
 func _on_DeathTimer_timeout():
