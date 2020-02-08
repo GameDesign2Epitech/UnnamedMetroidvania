@@ -60,7 +60,7 @@ func get_input():
 	
 	#Quitter le jeu si on appuie sur echap
 	if cancel:
-		get_tree().quit()
+		scene_loader.goto_scene("res://main_menu/menu.tscn")
 	
 	#Animation au sol
 	if is_on_floor():
@@ -177,9 +177,11 @@ func player_die():
 	$DeathTimer.start()
 
 func _on_SwitchPower_give_power():
+	$powerup.play()
 	$Cursor.has_switch_power = true
 
 func _on_GravityPower_give_power():
+	$powerup.play()
 	has_gravity_power = true
 
 func _on_DeathTimer_timeout():

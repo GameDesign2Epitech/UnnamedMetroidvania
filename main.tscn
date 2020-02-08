@@ -51,14 +51,14 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [ ExtResource( 17 ) ],
-"loop": true,
-"name": "2",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 19 ) ],
 "loop": true,
 "name": "1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 17 ) ],
+"loop": true,
+"name": "2",
 "speed": 5.0
 } ]
 
@@ -193,46 +193,53 @@ playing = true
 
 [node name="SpikeSet" parent="." instance=ExtResource( 13 )]
 position = Vector2( 3919.87, 1039.94 )
+width_left = 0
 width_right = 12
 
 [node name="SpikeSet2" parent="." instance=ExtResource( 13 )]
 position = Vector2( 4463.91, 1040.05 )
+width_left = 0
 width_right = 8
 
 [node name="SpikeSet3" parent="." instance=ExtResource( 13 )]
 position = Vector2( 5008.1, 464.146 )
+width_left = 0
 width_right = 18
 
 [node name="SpikeSet4" parent="." instance=ExtResource( 13 )]
 position = Vector2( 4847.92, 47.8832 )
 rotation = -3.14159
 width_left = 22
+width_right = 0
 
 [node name="SpikeSet5" parent="." instance=ExtResource( 13 )]
 position = Vector2( 4272.06, -494.97 )
 rotation = -3.14159
 width_left = 12
+width_right = 0
 
 [node name="SpikeSet6" parent="." instance=ExtResource( 13 )]
 position = Vector2( 4944, -304.467 )
 rotation = -3.14159
 width_left = 3
+width_right = 0
 
 [node name="SpikeSet7" parent="." instance=ExtResource( 13 )]
 position = Vector2( 5200.43, -496.009 )
 rotation = 3.14159
 width_left = 11
+width_right = 0
 
 [node name="SpikeSet8" parent="." instance=ExtResource( 13 )]
 position = Vector2( 5200.08, -304.084 )
 rotation = -3.14159
 width_left = 1
+width_right = 0
 
 [node name="GravityPower" parent="." instance=ExtResource( 14 )]
 position = Vector2( 6417.28, 987.274 )
 
 [node name="Upx2" type="AnimatedSprite" parent="."]
-editor/display_folded = true
 position = Vector2( 1113.25, 283.418 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 3 )
@@ -244,7 +251,6 @@ position = Vector2( 20.2419, 1.66769 )
 texture = ExtResource( 17 )
 
 [node name="Upx3" type="AnimatedSprite" parent="."]
-editor/display_folded = true
 position = Vector2( 3009.28, 925.66 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 3 )
@@ -293,7 +299,7 @@ autoplay = true
 [connection signal="give_power" from="SwitchPower" to="Player" method="_on_SwitchPower_give_power"]
 [connection signal="give_power" from="GravityPower" to="Player" method="_on_GravityPower_give_power"]
 [connection signal="scene_change" from="Player" to="Camera2D" method="_on_Player_scene_change"]
-[connection signal="toggle_off" from="Player" to="Camera2D" method="_on_Player_toggle_off"]
 [connection signal="toggle_off" from="Player" to="Upx3" method="_on_Player_toggle_off"]
-[connection signal="toggle_on" from="Player" to="Camera2D" method="_on_Player_toggle_on"]
+[connection signal="toggle_off" from="Player" to="Camera2D" method="_on_Player_toggle_off"]
 [connection signal="toggle_on" from="Player" to="Upx3" method="_on_Player_toggle_on"]
+[connection signal="toggle_on" from="Player" to="Camera2D" method="_on_Player_toggle_on"]
