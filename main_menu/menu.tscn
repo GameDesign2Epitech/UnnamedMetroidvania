@@ -11,6 +11,9 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 scene_to_load = "res://main.tscn"
 
 [node name="parallax_background" type="Sprite" parent="."]
@@ -23,14 +26,14 @@ texture = ExtResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="Control" type="Control" parent="vbc"]
+[node name="filler" type="Control" parent="vbc"]
 margin_right = 960.0
 margin_bottom = 58.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
 
-[node name="title" type="MarginContainer" parent="vbc"]
+[node name="title margin container" type="MarginContainer" parent="vbc"]
 margin_top = 62.0
 margin_right = 960.0
 margin_bottom = 236.0
@@ -38,7 +41,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 1.5
 
-[node name="Label" type="Label" parent="vbc/title"]
+[node name="Label" type="Label" parent="vbc/title margin container"]
 margin_right = 960.0
 margin_bottom = 174.0
 size_flags_horizontal = 3
@@ -49,7 +52,7 @@ text = "Unnamed MetroidVannia"
 align = 1
 valign = 1
 
-[node name="Control3" type="Control" parent="vbc"]
+[node name="filler2" type="Control" parent="vbc"]
 margin_top = 240.0
 margin_right = 960.0
 margin_bottom = 298.0
@@ -65,14 +68,14 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 1.5
 
-[node name="Control" type="Control" parent="vbc/buttons"]
+[node name="filler" type="Control" parent="vbc/buttons"]
 margin_right = 134.0
 margin_bottom = 174.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
 
-[node name="Control2" type="MarginContainer" parent="vbc/buttons"]
+[node name="margin container" type="MarginContainer" parent="vbc/buttons"]
 margin_left = 138.0
 margin_right = 407.0
 margin_bottom = 174.0
@@ -83,7 +86,7 @@ custom_constants/margin_top = 30
 custom_constants/margin_left = 30
 custom_constants/margin_bottom = 30
 
-[node name="Button" type="Button" parent="vbc/buttons/Control2"]
+[node name="Button" type="Button" parent="vbc/buttons/margin container"]
 margin_left = 30.0
 margin_top = 30.0
 margin_right = 239.0
@@ -95,7 +98,7 @@ custom_styles/pressed = ExtResource( 5 )
 custom_styles/normal = ExtResource( 6 )
 shortcut_in_tooltip = false
 
-[node name="Label" type="Label" parent="vbc/buttons/Control2/Button"]
+[node name="Label" type="Label" parent="vbc/buttons/margin container/Button"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
@@ -105,7 +108,7 @@ text = "> Play"
 align = 1
 valign = 1
 
-[node name="Control3" type="Control" parent="vbc/buttons"]
+[node name="filler2" type="Control" parent="vbc/buttons"]
 margin_left = 411.0
 margin_right = 545.0
 margin_bottom = 174.0
@@ -113,7 +116,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
 
-[node name="Control6" type="MarginContainer" parent="vbc/buttons"]
+[node name="margin container 2" type="MarginContainer" parent="vbc/buttons"]
 margin_left = 549.0
 margin_right = 818.0
 margin_bottom = 174.0
@@ -124,7 +127,7 @@ custom_constants/margin_top = 30
 custom_constants/margin_left = 30
 custom_constants/margin_bottom = 30
 
-[node name="Button" type="Button" parent="vbc/buttons/Control6"]
+[node name="Button" type="Button" parent="vbc/buttons/margin container 2"]
 margin_left = 30.0
 margin_top = 30.0
 margin_right = 239.0
@@ -136,7 +139,7 @@ custom_styles/pressed = ExtResource( 5 )
 custom_styles/normal = ExtResource( 6 )
 shortcut_in_tooltip = false
 
-[node name="Label" type="Label" parent="vbc/buttons/Control6/Button"]
+[node name="Label" type="Label" parent="vbc/buttons/margin container 2/Button"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_horizontal = 3
@@ -146,7 +149,7 @@ text = "> Quit"
 align = 1
 valign = 1
 
-[node name="Control5" type="Control" parent="vbc/buttons"]
+[node name="filler3" type="Control" parent="vbc/buttons"]
 margin_left = 822.0
 margin_right = 960.0
 margin_bottom = 174.0
@@ -154,12 +157,12 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
 
-[node name="Control4" type="Control" parent="vbc"]
+[node name="filler3" type="Control" parent="vbc"]
 margin_top = 480.0
 margin_right = 960.0
 margin_bottom = 540.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.5
-[connection signal="pressed" from="vbc/buttons/Control2/Button" to="." method="_on_play"]
-[connection signal="pressed" from="vbc/buttons/Control6/Button" to="." method="_on_quit"]
+[connection signal="pressed" from="vbc/buttons/margin container/Button" to="." method="_on_play"]
+[connection signal="pressed" from="vbc/buttons/margin container 2/Button" to="." method="_on_quit"]
