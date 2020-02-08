@@ -27,7 +27,7 @@
 [ext_resource path="res://UI/DFont.tres" type="DynamicFont" id=25]
 [ext_resource path="res://assets/gravity_power.png" type="Texture" id=26]
 [ext_resource path="res://win.gd" type="Script" id=27]
-[ext_resource path="res://sounds/validate.wav" type="AudioStream" id=28]
+[ext_resource path="res://sounds/victory.wav" type="AudioStream" id=28]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -55,14 +55,14 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [ ExtResource( 17 ) ],
-"loop": true,
-"name": "2",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 19 ) ],
 "loop": true,
 "name": "1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 17 ) ],
+"loop": true,
+"name": "2",
 "speed": 5.0
 } ]
 
@@ -111,7 +111,7 @@ position = Vector2( 3612.7, 778 )
 animation = "3"
 
 [node name="SwitchPower" parent="." instance=ExtResource( 5 )]
-position = Vector2( 3254.47, 624.564 )
+position = Vector2( 3330.68, 627.164 )
 
 [node name="Terminal" parent="." instance=ExtResource( 6 )]
 position = Vector2( 2991, 840 )
@@ -188,12 +188,14 @@ position = Vector2( 4636, -470 )
 position = Vector2( 3343.29, 816.23 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 1 )
+frame = 1
 playing = true
 
 [node name="PressS" type="AnimatedSprite" parent="."]
 position = Vector2( 6651.97, 980.517 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 2 )
+frame = 1
 playing = true
 
 [node name="SpikeSet" parent="." instance=ExtResource( 13 )]
@@ -240,6 +242,7 @@ position = Vector2( 6417.28, 987.274 )
 position = Vector2( 1113.25, 283.418 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 3 )
+frame = 1
 playing = true
 
 [node name="two_times" type="Sprite" parent="Upx2"]
@@ -250,7 +253,6 @@ texture = ExtResource( 17 )
 position = Vector2( 3009.28, 925.66 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 3 )
-frame = 1
 playing = true
 script = ExtResource( 18 )
 
@@ -260,13 +262,14 @@ frames = SubResource( 4 )
 animation = "1"
 
 [node name="Player" parent="." instance=ExtResource( 20 )]
-position = Vector2( 186.596, 490.385 )
+position = Vector2( 206.046, 459.32 )
 collision/safe_margin = 0.1
 run_speed = 200
 jump_speed = -500
 gravity = 1100
 
 [node name="Camera2D" parent="." instance=ExtResource( 21 )]
+speed = 700
 
 [node name="Terminal9" parent="." instance=ExtResource( 6 )]
 position = Vector2( 2931.07, 929.147 )
@@ -307,6 +310,7 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 26 )
 
 [node name="Label" type="Label" parent="WIN"]
+visible = false
 margin_left = -74.8528
 margin_top = -62.0852
 margin_right = 73.1472
@@ -323,9 +327,10 @@ pitch_scale = 1.2
 [connection signal="give_power" from="SwitchPower" to="Player" method="_on_SwitchPower_give_power"]
 [connection signal="give_power" from="SwitchPower" to="Camera2D" method="_on_SwitchPower_give_power"]
 [connection signal="give_power" from="GravityPower" to="Player" method="_on_GravityPower_give_power"]
+[connection signal="give_power" from="GravityPower" to="Camera2D" method="_on_GravityPower_acquired"]
 [connection signal="scene_change" from="Player" to="Camera2D" method="_on_Player_scene_change"]
-[connection signal="toggle_off" from="Player" to="Upx3" method="_on_Player_toggle_off"]
 [connection signal="toggle_off" from="Player" to="Camera2D" method="_on_Player_toggle_off"]
-[connection signal="toggle_on" from="Player" to="Upx3" method="_on_Player_toggle_on"]
+[connection signal="toggle_off" from="Player" to="Upx3" method="_on_Player_toggle_off"]
 [connection signal="toggle_on" from="Player" to="Camera2D" method="_on_Player_toggle_on"]
+[connection signal="toggle_on" from="Player" to="Upx3" method="_on_Player_toggle_on"]
 [connection signal="body_entered" from="WIN" to="WIN" method="_on_Area2D_body_entered"]

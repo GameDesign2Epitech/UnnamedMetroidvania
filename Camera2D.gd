@@ -7,6 +7,7 @@ var is_moving = false
 
 func _ready():
 	$overlay.visible = false
+	$powerup.connect("finished", self, "_powerup_finished")
 
 func _on_Player_scene_change(x, y):
 	#Calcul de la futur position de la caméra
@@ -48,3 +49,20 @@ func _on_Player_toggle_off():
 
 func _on_SwitchPower_give_power():
 	$overlay.visible = true
+	get_tree().paused = true
+	$cl/popup/npr/mc/label.text = "Activating platforms power acquired"
+	$cl/popup.popup_centered()
+	$powerup.play()
+
+func _on_GravityPower_acquired():
+	get_tree().paused = true
+	$cl/popup/npr/mc/label.text = "Gravity control   power acquired"
+	$cl/popup.popup_centered()
+	$powerup.play()
+
+
+func _powerup_finished():
+	#$pholder/popup.hide()
+	get_tree().paused = false
+	$cl/popup.hide()
+	pass

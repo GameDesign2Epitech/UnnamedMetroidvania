@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Camera2D.gd" type="Script" id=1]
 [ext_resource path="res://assets/on_overlay.png" type="Texture" id=2]
+[ext_resource path="res://UI/Popup.tscn" type="PackedScene" id=3]
+[ext_resource path="res://sounds/power_up.wav" type="AudioStream" id=4]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -28,3 +30,21 @@ modulate = Color( 1, 1, 1, 0.752941 )
 scale = Vector2( 5.2, 5.2 )
 frames = SubResource( 1 )
 animation = "off"
+
+[node name="cl" type="CanvasLayer" parent="."]
+pause_mode = 2
+
+[node name="popup" parent="cl" instance=ExtResource( 3 )]
+pause_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -32.0
+margin_right = 100.0
+margin_bottom = 32.0
+
+[node name="powerup" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 4 )
