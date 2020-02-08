@@ -82,5 +82,6 @@ switch={
 
 [rendering]
 
+quality/2d/use_pixel_snap=true
 environment/default_clear_color=Color( 0, 0.113725, 0.156863, 1 )
 quality/depth/hdr=false
