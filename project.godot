@@ -16,8 +16,12 @@ _global_script_class_icons={
 [application]
 
 config/name="UnnamedMetroidvania"
-run/main_scene="res://main.tscn"
+run/main_scene="res://main_menu/menu.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+scene_loader="*res://autoload/scene_loader.gd"
 
 [display]
 
